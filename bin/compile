@@ -8,6 +8,14 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
 
+JVM_COMMON_BUILDPACK=http://lang-jvm.s3.amazonaws.com/jvm-buildpack-common-v7.tar.gz
+mkdir -p /tmp/jvm-common
+curl --silent --location $JVM_COMMON_BUILDPACK | tar xzm -C /tmp/jvm-common
+. /tmp/jvm-common/bin/util
+. /tmp/jvm-common/bin/java
+
+export_env_dir $ENV_DIR
+
 mkdir -p ~/.sbt/bin
 curl -s https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt > ~/.sbt/bin/sbt
 chmod 0755 ~/.sbt/bin/sbt
