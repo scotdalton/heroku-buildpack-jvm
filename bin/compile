@@ -45,6 +45,7 @@ cd $BUILD_DIR
 sbt -v update
 
 # if there is not a target, build it
-if [ ! -f "$BUILD_DIR/target" ]; then
+echo `ls $BUILD_DIR/target`
+if [ ! -f $BUILD_DIR/target ]; then
   sbt -v stage
 fi
