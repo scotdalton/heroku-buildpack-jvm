@@ -16,6 +16,9 @@ curl --silent --location $JVM_COMMON_BUILDPACK | tar xzm -C /tmp/jvm-common
 
 export_env_dir $ENV_DIR
 
+#create the cache dir if it doesn't exist
+mkdir -p $CACHE_DIR
+
 # create default system.properties
 if [ ! -f ${BUILD_DIR}/system.properties ]; then
   echo "java.runtime.version=1.7" > ${BUILD_DIR}/system.properties
@@ -46,6 +49,6 @@ sbt -v update
 
 # if there is not a target, build it
 echo `ls $BUILD_DIR/target`
-if [ ! -f $BUILD_DIR/target ]; then
+if [ ! -e $BUILD_DIR/target ]; then
   sbt -v stage
 fi
