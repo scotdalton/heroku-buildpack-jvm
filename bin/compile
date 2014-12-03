@@ -32,23 +32,23 @@ jdk_overlay ${BUILD_DIR}
 echo "done"
 
 # get sbt from sbt-extras
-mkdir -p ~/.sbt/bin
-curl -s https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt > ~/.sbt/bin/sbt
-
-# make it executable
-chmod 0755 ~/.sbt/bin/sbt
-
-# put sbt in the PATH
-export PATH=~/.sbt/bin:$PATH
-
-# chdir as sbt expects
-cd $BUILD_DIR
-
-# update dependencies for the app
-sbt -v update
-
-# if there is not a target, build it
-echo `ls $BUILD_DIR/target`
-if [ ! -e $BUILD_DIR/target ]; then
-  sbt -v stage
-fi
+# mkdir -p ~/.sbt/bin
+# curl -s https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt > ~/.sbt/bin/sbt
+#
+# # make it executable
+# chmod 0755 ~/.sbt/bin/sbt
+#
+# # put sbt in the PATH
+# export PATH=~/.sbt/bin:$PATH
+#
+# # chdir as sbt expects
+# cd $BUILD_DIR
+#
+# # update dependencies for the app
+# sbt -v update
+#
+# # if there is not a target, build it
+# echo `ls $BUILD_DIR/target`
+# if [ ! -e $BUILD_DIR/target ]; then
+#   sbt -v stage
+# fi
