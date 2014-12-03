@@ -43,3 +43,8 @@ cd $BUILD_DIR
 
 # update dependencies for the app
 sbt -v update
+
+# if there is not a target, build it
+if [ ! -f "$BUILD_DIR/target" ]; then
+  sbt -v stage
+fi
