@@ -29,6 +29,12 @@ javaVersion=$(detect_java_version ${BUILD_DIR})
 echo -n "-----> Installing OpenJDK ${javaVersion}..."
 install_java ${BUILD_DIR} ${javaVersion}
 jdk_overlay ${BUILD_DIR}
+
+echo -n "-----> Installing SBT extras..."
+mkdir -p ~/.sbt/bin
+curl -s https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt > ~/.sbt/bin/sbt
+chmod 0755 ~/.sbt/bin/sbt
+
 echo "done"
 
 exit
