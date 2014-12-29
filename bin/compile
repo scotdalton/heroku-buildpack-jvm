@@ -30,8 +30,12 @@ echo -n "-----> Installing OpenJDK ${javaVersion}..."
 install_java ${BUILD_DIR} ${javaVersion}
 jdk_overlay ${BUILD_DIR}
 
+echo "done"
+
 echo -n "-----> Installing SBT extras..."
 mkdir -p ~/.sbt/bin
+cd ~/.sbt
+pwd
 curl -s https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt > ~/.sbt/bin/sbt
 chmod 0755 ~/.sbt/bin/sbt
 
