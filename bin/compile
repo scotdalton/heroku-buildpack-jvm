@@ -33,12 +33,12 @@ jdk_overlay ${BUILD_DIR}
 echo "done"
 
 echo -n "-----> Installing SBT extras..."
-mkdir -p ~/.sbt/bin
-cd ~/.sbt
-pwd
-curl -s https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt > ~/.sbt/bin/sbt
-chmod 0755 ~/.sbt/bin/sbt
+SBT_LOC=~/.jdk/sbt/bin/sbt
+mkdir -p `dirname $SBT_LOC`
+curl -s https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt > $SBT_LOC
+chmod 0755 $SBT_LOC
 
-echo "done"
+echo -n "done: "
+ls -l $SBT_LOC
 
 exit
