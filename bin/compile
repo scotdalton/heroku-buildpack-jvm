@@ -24,6 +24,15 @@ if [ ! -f ${BUILD_DIR}/system.properties ]; then
   echo "java.runtime.version=1.7" > ${BUILD_DIR}/system.properties
 fi
 
+echo -n "-----> Installing SBT extras..."
+SBT_LOC=~/.sbt/bin/sbt
+mkdir -p `dirname $SBT_LOC`
+curl -s https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt > $SBT_LOC
+chmod 0755 $SBT_LOC
+
+echo -n "done: "
+ls -l $SBT_LOC
+
 # install JDK
 javaVersion=$(detect_java_version ${BUILD_DIR})
 echo -n "-----> Installing OpenJDK ${javaVersion}..."
@@ -31,14 +40,5 @@ install_java ${BUILD_DIR} ${javaVersion}
 jdk_overlay ${BUILD_DIR}
 
 echo "done"
-
-echo -n "-----> Installing SBT extras..."
-SBT_LOC=~/.jdk/sbt/bin/sbt
-mkdir -p `dirname $SBT_LOC`
-curl -s https://raw.githubusercontent.com/paulp/sbt-extras/master/sbt > $SBT_LOC
-chmod 0755 $SBT_LOC
-
-echo -n "done: "
-ls -l $SBT_LOC
 
 exit
