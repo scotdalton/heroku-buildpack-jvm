@@ -8,9 +8,9 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
 
-JVM_COMMON_BUILDPACK=http://lang-jvm.s3.amazonaws.com/jvm-buildpack-common-v7.tar.gz
+JVM_COMMON_BUILDPACK=${JVM_COMMON_BUILDPACK:-https://codon-buildpacks.s3.amazonaws.com/buildpacks/heroku/jvm-common.tgz}
 mkdir -p /tmp/jvm-common
-curl --silent --location $JVM_COMMON_BUILDPACK | tar xzm -C /tmp/jvm-common
+curl --silent --location $JVM_COMMON_BUILDPACK | tar xzm -C /tmp/jvm-common --strip-components=1
 . /tmp/jvm-common/bin/util
 . /tmp/jvm-common/bin/java
 
@@ -21,7 +21,7 @@ mkdir -p $CACHE_DIR
 
 # create default system.properties
 if [ ! -f ${BUILD_DIR}/system.properties ]; then
-  echo "java.runtime.version=1.7" > ${BUILD_DIR}/system.properties
+  echo "java.runtime.version=1.8" > ${BUILD_DIR}/system.properties
 fi
 
 echo -n "-----> Installing SBT extras..."
